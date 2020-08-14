@@ -2,6 +2,8 @@ package com.joaopedro.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,8 +37,9 @@ import javax.persistence.TemporalType;
 	@ManyToOne
 	@JoinColumn(name="endereco_id")
 	private Endereco enderecoDeEntrega;
-
-	private Pedido pedido; 
+	
+	@OneToMany(mappedBy="id.pedido")
+	private Set<ItemPedido> itens = new HashSet<>();
 
 	
 	public Pedido(){
@@ -75,14 +79,6 @@ import javax.persistence.TemporalType;
 		this.pagamento = pagamento;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -99,6 +95,14 @@ import javax.persistence.TemporalType;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
