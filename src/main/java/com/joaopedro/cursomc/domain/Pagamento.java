@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.joaopedro.cursomc.domain.enums.EstadoPagamento;
 
 	@Entity
@@ -22,7 +22,7 @@ import com.joaopedro.cursomc.domain.enums.EstadoPagamento;
 		private Integer id;
 		private Integer estado;
 
-		@JsonBackReference
+		@JsonIgnore
 		@JoinColumn(name="pedido_id")
 		@OneToOne
  		@MapsId
